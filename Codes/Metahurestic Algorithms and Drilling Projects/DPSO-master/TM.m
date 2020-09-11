@@ -206,7 +206,7 @@ d2=zeros(NOC,NOW);
 
 c1=10*rand;
 for j=1:NOC;
-    k(j,1)=unidrnd(NOW,1);
+    k(j,1)= unidrnd(NOW,1);
     m(j,1)=round(c1*rand);
     if m(j,1)>NOW-k(j,1);
         m(j,1)=NOW-k(j,1);
