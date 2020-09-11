@@ -22,10 +22,6 @@
 </p>
 
 
-<p align="center">
-  <img width="600" src="Assets/DE algo3.gif" >
-</p>
-
 
 <p align="center">
   <img width="600" src="Assets/DE algo4.gif" >
