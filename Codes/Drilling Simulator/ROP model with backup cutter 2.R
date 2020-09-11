@@ -1,6 +1,6 @@
 
 #clean console
-cat("\014") 
+cat("\014")
 #clean environment
 rm(list=ls())
 
@@ -18,18 +18,18 @@ BR <- 20 # Back Rake in angle
 SR <- 0 # Side Rake in angle
 wSTUD <- 0.3 # weight 1 STUD
 wPDC <- 1 # weight 2 PDC
-Emb_Length <- 0.2 # Cutter embedded length  
+Emb_Length <- 0.2 # Cutter embedded length
 Lcutter <- 2 # cutter length in inch
 CutterT <- 0.0276 # cutter thickness in inch
-ROPcoff <- 300 # ROP coefficient  
+ROPcoff <- 300 # ROP coefficient
 BGThershold <- 8*(Lcutter-Emb_Length)*tan(BR*pi/180)/Dc
 
 #---------------------------------------------
 # Cutter Wear Flat Area Temprature parameters
 # Tf <- 50 # fluid temprature in C
 # kf <- 0.04 # cutter/rock friction coefficient
-f <- 0.5 # thermal response function 
-# alpha_f <- 1 # 
+f <- 0.5 # thermal response function
+# alpha_f <- 1 #
 #---------------------------------------------
 DataTimeInter <- 5 # sec
 #-----------------------------BG Column
@@ -37,12 +37,12 @@ DataTimeInter <- 5 # sec
 # BG <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/BG.csv", header = T)
 # BG <- read.csv("C:/Users/Farshid/Desktop/rop/BG.csv", header = T)
 # C:\Users\DASLAB Hareland 3\Documents\All_Amin_Github\Petroleum-and-Drilling-Enginnering\Codes\Drilling Simulator
-BG <- read.csv("../Drilling Simulator/BG.csv", header = T)
+BG <- read.csv("../Drilling Simulator/Data_set/BG.csv", header = T)
 BG <- 0.01*BG
 Num_of_Data <- nrow(BG)
 # BU_BG <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/BU_BG.csv", header = T)
 # BU_BG <- read.csv("C:/Users/Farshid/Desktop/rop/BU_BG.csv", header = T)
-BU_BG <- read.csv("../Drilling Simulator/BU_BG.csv", header = T)
+BU_BG <- read.csv("../Drilling Simulator/Data_set/BU_BG.csv", header = T)
 BU_BG <- 0.01*BU_BG
 Num_of_Data <- nrow(BU_BG)
 
@@ -58,38 +58,38 @@ colnames(ROP) <- 'ROP (ft/hr)'
 #----------------------------WOB Column
 # WOB <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/WOB.csv", header = T); WOB <-1*WOB
 # WOB <- read.csv("C:/Users/Farshid/Desktop/rop/WOB.csv", header = T); WOB <-2*WOB
-WOB <- read.csv("../Drilling Simulator/WOB.csv", header = T); WOB <-2*WOB
+WOB <- read.csv("../Drilling Simulator/Data_set/WOB.csv", header = T); WOB <-2*WOB
 WOC <- WOB/NOC
 colnames(WOC) <- 'WOC,lbf'
 #----------------------------RPM Column
 # RPM <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/RPM.csv", header = T); RPM <- 1*RPM
 # RPM <- read.csv("C:/Users/Farshid/Desktop/rop/RPM.csv", header = T); RPM <- 1*RPM
-RPM <- read.csv("../Drilling Simulator/RPM.csv", header = T); RPM <- 1*RPM
+RPM <- read.csv("../Drilling Simulator/Data_set/RPM.csv", header = T); RPM <- 1*RPM
 #----------------------------CCS Column
 # CCS <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/CCS.csv", header = T); CCS <- 0.5*CCS
 # CCS <- read.csv("C:/Users/Farshid/Desktop/rop/CCS.csv", header = T); CCS <- 1*CCS
-CCS <- read.csv("../Drilling Simulator/CCS.csv", header = T); CCS <- 1*CCS
+CCS <- read.csv("../Drilling Simulator/Data_set/CCS.csv", header = T); CCS <- 1*CCS
 #----------------------------Tf Column
 # Tf <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/Tf.csv", header = T)
 # Tf <- read.csv("C:/Users/Farshid/Desktop/rop/Tf.csv", header = T)
-Tf <- read.csv("../Drilling Simulator/Tf.csv", header = T)
+Tf <- read.csv("../Drilling Simulator/Data_set/Tf.csv", header = T)
 #----------------------------kf Column
 # kf <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/kf.csv", header = T)
 # kf <- read.csv("C:/Users/Farshid/Desktop/rop/kf.csv", header = T)
-kf <- read.csv("../Drilling Simulator/Kf.csv", header = T)
+kf <- read.csv("../Drilling Simulator/Data_set/Kf.csv", header = T)
 #----------------------------alpha_f Column
 # alpha_f <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/alpha_f.csv", header = T)
 # alpha_f <- read.csv("C:/Users/Farshid/Desktop/rop/alpha_f.csv", header = T)
-alpha_f <- read.csv("../Drilling Simulator/alpha_f.csv", header = T)
-#----------------------------thermal response function 
+alpha_f <- read.csv("../Drilling Simulator/Data_set/alpha_f.csv", header = T)
+#----------------------------thermal response function
 # f <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/f.csv", header = T)
 # f <- read.csv("C:/Users/Farshid/Desktop/rop/f.csv", header = T)
-f <- read.csv("../Drilling Simulator/f.csv", header = T)
-#----------------------------khf (w/cm/C) 
+f <- read.csv("../Drilling Simulator/Data_set/f.csv", header = T)
+#----------------------------khf (w/cm/C)
 # khf <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/khf.csv", header = T)
 # khf <- read.csv("C:/Users/Farshid/Desktop/rop/khf.csv", header = T)
-khf <- read.csv("../Drilling Simulator/Khf.csv", header = T)
-#----------------------------FN1 and FN2 
+khf <- read.csv("../Drilling Simulator/Data_set/Khf.csv", header = T)
+#----------------------------FN1 and FN2
 #normal forces on cutter and back up cutter
 FN1 <- matrix(0,Num_of_Data,1)
 colnames(FN1) <- "Lbf"
@@ -151,7 +151,7 @@ colnames(BU_cutter_wearflat_length) <- 'BU_cutter_wearflat_length,cm'
 
 NeedToCovered <- (WOB/NOC)/(CCS)
 colnames(NeedToCovered) <- 'NeedToCovered'
-Max_DOC_OnCutterFace <- (Dc)*cos(BR*pi/180) 
+Max_DOC_OnCutterFace <- (Dc)*cos(BR*pi/180)
 Max_DOC <- Max_DOC_OnCutterFace*cos(BR*pi/180)
 
 #-------------------------------------------------------------------------
@@ -256,33 +256,33 @@ BU_cwv <- 0 # cutter worn volume counter "comulative" for back up cutter
 
 
 for (i in 1:Num_of_Data){
-  
-  
-  
-  
+
+
+
+
   DepthOfCut_P[i,1] <- BGDc8Cos[i,1]
   colnames(DepthOfCut_P) <- 'DepthOfCut_P'
   BU_DepthOfCut_P[i,1] <- BU_BGDc8Cos[i,1]
   colnames(BU_DepthOfCut_P) <- 'BU_DepthOfCut_P'
-  
+
   j <- 0
-  
+
   while(DepthOfCut_P[i,1] < Max_DOC && Diff_AwBeneathCutter_T_NeedToCovered[i,1] < DOC_accuracy){
-    
+
     j <- j+1
-    
+
     # cat("i=",i,"j=",j, "\n")
-    
+
     DepthOfCut_P[i,1] <- DepthOfCut_P[i,1] + StepSize
-    
-    
-    
+
+
+
     #=======================Cutter #1=========================
     #=========================================================
     #=========================================================
     #=========================================================
     #=========================================================
-    
+
     DOC_OCF[i,1] <- DepthOfCut_P[i,1]/(cos(BR*pi/180));# print(DOC_OCF[1,1])
     colnames(DOC_OCF) <- 'DOC_OCF'
     # AreaOnCutterFaceClean = AOCFC
@@ -300,7 +300,7 @@ for (i in 1:Num_of_Data){
     # area infront of cutter
     AV[i,1] <- ACT[i,1]*cos(BR*pi/180)*cos(SR*pi/180)
     colnames(AV) <- 'AV'
-    
+
     #-----------------------------------------
     #calc for Aw total
     Aw1 <- (BG[i,1]*Dc/8)*cos(BR*pi/180)
@@ -318,7 +318,7 @@ for (i in 1:Num_of_Data){
     Aw13 <- (Rc^2/2)*(asin(Aw7)+Aw9*Aw11)
     Aw14 <- (Aw12-Aw13)*(2/cos((90-BR)*pi/180))
     AwTotal[i,1] <- Aw14
-    
+
     AwPDC1 <- (BG[i,1]*Dc/8)*cos(BR*pi/180)
     AwPDC2 <- (Aw1-CutterT*cos((90-BR)*pi/180))/sin((90-BR)*pi/180)
     if (AwPDC2<0){AwPDC3 <- 0} else {AwPDC3 <- AwPDC2}
@@ -334,29 +334,29 @@ for (i in 1:Num_of_Data){
     AwPDC13 <- (Rc^2/2)*(asin(AwPDC7)+AwPDC9*AwPDC11)
     AwPDC14 <- (AwPDC12-AwPDC13)*(2/cos((90-BR)*pi/180))
     AwPDC[i,1] <- AwPDC14
-    
+
     AwSTUD[i,1] <- AwTotal[i,1]-AwPDC[i,1]
-    AwW <- wSTUD*AwSTUD[i,1] + wPDC*AwPDC[i,1]  
+    AwW <- wSTUD*AwSTUD[i,1] + wPDC*AwPDC[i,1]
     AwBeneathCutter <- AwW + AH[i,1]
     #=========================================================
     #=========================================================
     #=========================================================
     #=========================================================
     #=======================Cutter #2=========================
-    
+
     EXPR_realtime[i,1] <- EXPR_new - BGDc8Cos[i,1] + BU_BGDc8Cos[i,1]
-    
+
     if (DepthOfCut_P[i,1] > EXPR_new+BU_BGDc8Cos[i,1]){
-      
-      
-      
+
+
+
       # cat("DOCP=",DepthOfCut_P[i,1]," > EXPR_new+BU_BGDc8Cos[i,1]",EXPR_new+BU_BGDc8Cos[i,1],"in i=",i,"in j=",j,"\n")
-      
-      
-      
-      
+
+
+
+
       BU_DepthOfCut_P[i,1] <- DepthOfCut_P[i,1] - EXPR_new
-      
+
       BU_DOC_OCF[i,1] <- BU_DepthOfCut_P[i,1]/(cos(BR*pi/180))
       colnames(BU_DOC_OCF) <- 'BU_DOC_OCF'
       # AreaOnCutterFaceClean = AOCFC
@@ -374,7 +374,7 @@ for (i in 1:Num_of_Data){
       # area infront of cutter
       BU_AV[i,1] <- BU_ACT[i,1]*cos(BR*pi/180)*cos(SR*pi/180)
       colnames(BU_AV) <- 'BU_AV'
-      
+
       #-----------------------------------------
       #calc for Aw total
       BU_Aw1 <- (BU_BG[i,1]*Dc/8)*cos(BR*pi/180)
@@ -392,7 +392,7 @@ for (i in 1:Num_of_Data){
       BU_Aw13 <- (Rc^2/2)*(asin(BU_Aw7)+BU_Aw9*BU_Aw11)
       BU_Aw14 <- (BU_Aw12-BU_Aw13)*(2/cos((90-BR)*pi/180))
       BU_AwTotal[i,1] <- BU_Aw14
-      
+
       BU_AwPDC1 <- (BU_BG[i,1]*Dc/8)*cos(BR*pi/180)
       BU_AwPDC2 <- (BU_Aw1-CutterT*cos((90-BR)*pi/180))/sin((90-BR)*pi/180)
       if (BU_AwPDC2<0){BU_AwPDC3 <- 0} else {BU_AwPDC3 <- BU_AwPDC2}
@@ -408,37 +408,37 @@ for (i in 1:Num_of_Data){
       BU_AwPDC13 <- (Rc^2/2)*(asin(BU_AwPDC7)+BU_AwPDC9*BU_AwPDC11)
       BU_AwPDC14 <- (BU_AwPDC12-BU_AwPDC13)*(2/cos((90-BR)*pi/180))
       BU_AwPDC[i,1] <- BU_AwPDC14
-      
+
       BU_AwSTUD[i,1] <- BU_AwTotal[i,1]-BU_AwPDC[i,1]
-      BU_AwW <- wSTUD*BU_AwSTUD[i,1] + wPDC*BU_AwPDC[i,1] 
+      BU_AwW <- wSTUD*BU_AwSTUD[i,1] + wPDC*BU_AwPDC[i,1]
       BU_AwBeneathCutter <- BU_AwW + BU_AH[i,1]
-      
-      
-    } 
-    else{
-      
-      BU_AwBeneathCutter <- 0
-      
+
+
     }
-    
+    else{
+
+      BU_AwBeneathCutter <- 0
+
+    }
+
     #=========================================================
     #=========================================================
     #=========================================================
     #=========================================================
     #=========================================================
-    
-    
+
+
     AwBeneathCutter_T=AwBeneathCutter+BU_AwBeneathCutter #total weighted area beneath the cutters
     Diff_AwBeneathCutter_T_NeedToCovered[i,1] <- AwBeneathCutter_T -NeedToCovered[i,1]
-    
-    
+
+
   }
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   DOC_real[i,1] <- DepthOfCut_P[i,1]- BGDc8Cos[i,1]
   colnames(DOC_real) <- 'DOC_real'
   AH_Matrix[i,1] <- AH[i,1]
@@ -446,9 +446,9 @@ for (i in 1:Num_of_Data){
   AV_Matrix[i,1] <- AV[i,1]
   colnames(AV) <- 'AV'
   FN1[i,1] <- AwBeneathCutter/AwBeneathCutter_T
-  
+
   if (DepthOfCut_P[i,1] > EXPR_new + BU_BGDc8Cos[i,1]){
-    
+
     BU_DOC_real[i,1] <- BU_DepthOfCut_P[i,1]- BU_BGDc8Cos[i,1]
     colnames(BU_DOC_real) <- 'BU_DOC_real'
     BU_AH_Matrix[i,1] <- BU_AH[i,1]
@@ -456,10 +456,10 @@ for (i in 1:Num_of_Data){
     BU_AV_Matrix[i,1] <- BU_AV[i,1]
     colnames(BU_AV) <- 'BU_AV'
     FN2[i,1] <- BU_AwBeneathCutter/AwBeneathCutter_T
-    
+
   }
   else{
-    
+
     BU_DOC_real[i,1] <- 0
     colnames(BU_DOC_real) <- 'BU_DOC_real'
     BU_AH_Matrix[i,1] <- 0
@@ -467,32 +467,32 @@ for (i in 1:Num_of_Data){
     BU_AV_Matrix[i,1] <- 0
     colnames(BU_AV) <- 'BU_AV'
     FN2[i,1] <- 0
-    
+
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
   #==================================================WEAR AND TEMPRATURE================================================
   #==================================================WEAR AND TEMPRATURE================================================
   #==================================================WEAR AND TEMPRATURE================================================
   #==================================================WEAR AND TEMPRATURE================================================
   #==================================================WEAR AND TEMPRATURE================================================
   #==================================================WEAR AND TEMPRATURE================================================
-  
+
   if (EXPR_realtime[i,1] > 0){
     # calculations for cutter 1 and 2 for temprature and wear when the EXPR is not zero. Cutters are not in the same level.
-    
-    
-    
-    
+
+
+
+
     # for cutter 1
     ##############
     ##############
@@ -500,114 +500,114 @@ for (i in 1:Num_of_Data){
     ##############
     cutter_wearflat_length[i,1] <- (BG[i,1]*Dc/8)/sin(pi*BR/180)*2.54
     colnames(cutter_wearflat_length) <- 'cutter_wearflat_length,cm'
-    
+
     Tw[i,1] <- Tf[i,1]+((kf[i,1]*(FN1[i,1]*WOC[i,1])*Cutter_Velocity[i,1]*f[i,1])/(AwTotal[i,1]*6.4516))*
       ((1+(3*(pi^0.5)/4)*f[i,1]*khf[i,1]*(Cutter_Velocity[i,1]/(cutter_wearflat_length[i,1]*alpha_f[i,1]))^0.5)^-1)
-    
+
     #============================================================wear function
     work1[i,1] <- (0.083*kf[i,1]*(FN1[i,1]*WOC[i,1])*RPM[i,1]*(2*pi*Re))*(DataTimeInter/60)
     work2[i,1] <- 0#(0.083*Ce*AV_Matrix[i,1]*(2*pi*Re)*RPM[i,1]*CCS[i,1])*(DataTimeInter/60)
     workT[i,1] <- work1[i,1] + work2[i,1]
     alphaAve[i,1] <- (AwPDC[i,1]/AwTotal[i,1])*wear_cof_PDC+(AwSTUD[i,1]/AwTotal[i,1])*wear_cof_STUD
     length(alphaAve);length(AwPDC);length(AwTotal);length(AwSTUD);
-    
+
     cutter_worn_vol_each_datapoint[i,1] <- workT[i,1]/alphaAve[i,1]
-    
+
     cwv <- cutter_worn_vol_each_datapoint[i,1]+ cwv
     comulative_cutter_worn_vol[i,1] <- cwv
-    
+
     #calculate the BG by reverse cutter volume equation
-    
+
     V_total_worn_theory <- 0
-    
+
     while(V_total_worn_theory - comulative_cutter_worn_vol[i,1] < wornVol_accuracy){
-      
-      BG[i,1] <- BG[i,1] + addBG 
-      
+
+      BG[i,1] <- BG[i,1] + addBG
+
       V_total_worn_theory <- (-1)*((((Dc/2)^3)/tan(pi*BR/180))*
                                      ((((Dc/2)-(BG[i,1]*Dc/8))/(Dc/2))*acos((((Dc/2)-(BG[i,1]*Dc/8))/(Dc/2)))-
                                         ((1-((((Dc/2)-(BG[i,1]*Dc/8))/(Dc/2)))^2))^0.5)+(((Dc/2)^3)/3*tan(pi*BR/180))*
                                      ((1-((((Dc/2)-(BG[i,1]*Dc/8))/(Dc/2)))^2)^0.5)^3)
-      
-      
+
+
     }
     #update BG that is used for next ROP calculations
     BG[i+1,1] <- BG[i,1]
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
     #for cutter 2 or back up cutter ==== if it is engaged with formation or NOT
     ##############
     ##############
     ##############
     ##############
-    
+
     if (DepthOfCut_P[i,1] > EXPR_new+BU_BGDc8Cos[i,1]){
-      
+
       BU_cutter_wearflat_length[i,1] <- (BU_BG[i,1]*Dc/8)/sin(pi*BR/180)*2.54
       colnames(BU_cutter_wearflat_length) <- 'BU_cutter_wearflat_length,cm'
-      
+
       BU_Tw[i,1] <- Tf[i,1]+((kf[i,1]*(FN2[i,1]*WOC[i,1])*Cutter_Velocity[i,1]*f[i,1])/(BU_AwTotal[i,1]*6.4516))*
         ((1+(3*(pi^0.5)/4)*f[i,1]*khf[i,1]*(Cutter_Velocity[i,1]/(BU_cutter_wearflat_length[i,1]*alpha_f[i,1]))^0.5)^-1)
-      
+
       #============================================================wear function
       BU_work1[i,1] <- (0.083*kf[i,1]*(FN2[i,1]*WOC[i,1])*RPM[i,1]*(2*pi*Re))*(DataTimeInter/60)
       BU_work2[i,1] <- 0#(0.083*Ce*BU_AV_Matrix[i,1]*(2*pi*Re)*RPM[i,1]*CCS[i,1])*(DataTimeInter/60)
       BU_workT[i,1] <- BU_work1[i,1] + BU_work2[i,1]
       BU_alphaAve[i,1] <- (BU_AwPDC[i,1]/BU_AwTotal[i,1])*wear_cof_PDC+(BU_AwSTUD[i,1]/BU_AwTotal[i,1])*wear_cof_STUD
       BU_cutter_worn_vol_each_datapoint[i,1] <- BU_workT[i,1]/BU_alphaAve[i,1]
-      
+
       BU_cwv <- BU_cutter_worn_vol_each_datapoint[i,1]+ BU_cwv
       BU_comulative_cutter_worn_vol[i,1] <- BU_cwv
-      
+
       #calculate the BU_BG by reverse cutter volume equation
       # wornVol_accuracy <- 0.001
       BU_V_total_worn_theory <- 0
-      
+
       while(BU_V_total_worn_theory - BU_comulative_cutter_worn_vol[i,1] < wornVol_accuracy){
-        
+
         BU_BG[i,1] <- BU_BG[i,1] + addBG
-        
+
         BU_V_total_worn_theory <- (-1)*((((Dc/2)^3)/tan(pi*BR/180))*
                                           ((((Dc/2)-(BU_BG[i,1]*Dc/8))/(Dc/2))*acos((((Dc/2)-(BU_BG[i,1]*Dc/8))/(Dc/2)))-
                                              ((1-((((Dc/2)-(BU_BG[i,1]*Dc/8))/(Dc/2)))^2))^0.5)+(((Dc/2)^3)/3*tan(pi*BR/180))*
                                           ((1-((((Dc/2)-(BU_BG[i,1]*Dc/8))/(Dc/2)))^2)^0.5)^3)
-        
-        
+
+
       }
       #update BG that is used for next ROP calculations
       BU_BG[i+1,1] <- BU_BG[i,1]
-      
-      
+
+
     }
     else{
-      
+
       BU_BG[i+1,1] <- BU_BG[i,1]
-      
+
       BU_cwv <- BU_cutter_worn_vol_each_datapoint[i,1]+ BU_cwv
       BU_comulative_cutter_worn_vol[i,1] <- BU_cwv
     }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
   }
   # if EXPR realtime achived 0 and both cutters are in same lavel, then:
   # calc BG1 and 2 seperatly and take an average and report it for both BGs
   else{
-    
+
     EXPR_realtime[i,1] <- 0
-    
-    
+
+
     # for cutter 1
     ##############
     ##############
@@ -615,21 +615,21 @@ for (i in 1:Num_of_Data){
     ##############
     cutter_wearflat_length[i,1] <- (BG[i,1]*Dc/8)/sin(pi*BR/180)*2.54
     colnames(cutter_wearflat_length) <- 'cutter_wearflat_length,cm'
-    
+
     Tw[i,1] <- Tf[i,1]+((kf[i,1]*FN1[i,1]*Cutter_Velocity[i,1]*f[i,1])/(AwTotal[i,1]*6.4516))*
       ((1+(3*(pi^0.5)/4)*f[i,1]*khf[i,1]*(Cutter_Velocity[i,1]/(cutter_wearflat_length[i,1]*alpha_f[i,1]))^0.5)^-1)
-    
+
     #============================================================wear function
     work1[i,1] <- (0.083*kf[i,1]*FN1[i,1]*RPM[i,1]*(2*pi*Re))*(DataTimeInter/60)
     work2[i,1] <- 0#(0.083*Ce*AV_Matrix[i,1]*(2*pi*Re)*RPM[i,1]*CCS[i,1])*(DataTimeInter/60)
     workT[i,1] <- work1[i,1] + work2[i,1]
     alphaAve[i,1] <- (AwPDC[i,1]/AwTotal[i,1])*wear_cof_PDC + (AwSTUD[i,1]/AwTotal[i,1])*wear_cof_STUD
     cutter_worn_vol_each_datapoint[i,1] <- workT[i,1]/alphaAve[i,1]
-    
+
     cwv <- cutter_worn_vol_each_datapoint[i,1]+ cwv
     comulative_cutter_worn_vol[i,1] <- cwv
-    
-    
+
+
     # for cutter 2 or back up cutter
     ##############
     ##############
@@ -637,82 +637,82 @@ for (i in 1:Num_of_Data){
     ##############
     BU_cutter_wearflat_length[i,1] <- (BU_BG[i,1]*Dc/8)/sin(pi*BR/180)*2.54
     colnames(BU_cutter_wearflat_length) <- 'BU_cutter_wearflat_length,cm'
-    
+
     BU_Tw[i,1] <- Tf[i,1]+((kf[i,1]*FN2[i,1]*Cutter_Velocity[i,1]*f[i,1])/(BU_AwTotal[i,1]*6.4516))*
       ((1+(3*(pi^0.5)/4)*f[i,1]*khf[i,1]*(Cutter_Velocity[i,1]/(BU_cutter_wearflat_length[i,1]*alpha_f[i,1]))^0.5)^-1)
-    
+
     #============================================================wear function
     BU_work1[i,1] <- (0.083*kf[i,1]*FN2[i,1]*RPM[i,1]*(2*pi*Re))*(DataTimeInter/60)
     BU_work2[i,1] <- 0#(0.083*Ce*BU_AV_Matrix[i,1]*(2*pi*Re)*RPM[i,1]*CCS[i,1])*(DataTimeInter/60)
     BU_workT[i,1] <- BU_work1[i,1] + BU_work2[i,1]
     BU_alphaAve[i,1] <- (BU_AwPDC[i,1]/BU_AwTotal[i,1])*wear_cof_PDC+(BU_AwSTUD[i,1]/BU_AwTotal[i,1])*wear_cof_STUD
     BU_cutter_worn_vol_each_datapoint[i,1] <- BU_workT[i,1]/BU_alphaAve[i,1]
-    
+
     BU_cwv <- BU_cutter_worn_vol_each_datapoint[i,1]+ BU_cwv
     BU_comulative_cutter_worn_vol[i,1] <- BU_cwv
-    
-    
-    
+
+
+
     #calculate the BG by reverse cutter volume equation
     # wornVol_accuracy <- 0.001
     V_total_worn_theory <- 0
     #calculate the BU_BG by reverse cutter volume equation
     # wornVol_accuracy <- 0.001
     BU_V_total_worn_theory <- 0
-    
-    
+
+
     while((V_total_worn_theory+BU_V_total_worn_theory) - (comulative_cutter_worn_vol[i,1]+BU_comulative_cutter_worn_vol[i,1]) < wornVol_accuracy){
-      
+
       BG[i,1] <- BG[i,1] + addBG
-      
+
       BU_BG[i,1] <- BU_BG[i,1] + addBG
-      
-      
-      
+
+
+
       V_total_worn_theory <- (-1)*((((Dc/2)^3)/tan(pi*BR/180))*
                                      ((((Dc/2)-(BG[i,1]*Dc/8))/(Dc/2))*acos((((Dc/2)-(BG[i,1]*Dc/8))/(Dc/2)))-
                                         ((1-((((Dc/2)-(BG[i,1]*Dc/8))/(Dc/2)))^2))^0.5)+(((Dc/2)^3)/3*tan(pi*BR/180))*
                                      ((1-((((Dc/2)-(BG[i,1]*Dc/8))/(Dc/2)))^2)^0.5)^3)
-      
-      
+
+
       BU_V_total_worn_theory <- (-1)*((((Dc/2)^3)/tan(pi*BR/180))*
                                         ((((Dc/2)-(BU_BG[i,1]*Dc/8))/(Dc/2))*acos((((Dc/2)-(BU_BG[i,1]*Dc/8))/(Dc/2)))-
                                            ((1-((((Dc/2)-(BU_BG[i,1]*Dc/8))/(Dc/2)))^2))^0.5)+(((Dc/2)^3)/3*tan(pi*BR/180))*
                                         ((1-((((Dc/2)-(BU_BG[i,1]*Dc/8))/(Dc/2)))^2)^0.5)^3)
-      
-      
-      
+
+
+
     }
-    
+
     #update BG and BU_BG by taking average of both
-    
+
     BG[i+1,1] <- BG[i,1]
     BU_BG[i+1,1] <- BU_BG[i,1]
-    
-    
-    
-    
-    
+
+
+
+
+
   }
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   BGDc8[i+1,1] <- BG[i+1,1]*Dc/8
   BGDc8Cos[i+1,1] <- BGDc8[i+1,1]*cos(BR*pi/180)
-  
+
   BU_BGDc8[i+1,1] <- BU_BG[i+1,1]*Dc/8
   BU_BGDc8Cos[i+1,1] <- BU_BGDc8[i+1,1]*cos(BR*pi/180)
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
   ROP[i,1] <- ROPcoff*(5*RPM[i,1]*Re*Ce*((AV_Matrix[i,1]+BU_AV_Matrix[i,1])/2)/(pi*Db*Db/4))
   cat("in i=",i,"in j=",j,"\n")
   cat("DOCP=",DepthOfCut_P[i,1],"BU_DOCP=",BU_DepthOfCut_P[i,1],"MaxDOC=",Max_DOC,"\n")
@@ -728,20 +728,20 @@ for (i in 1:Num_of_Data){
   print("-----------------------------------------------------------------------------------------")
   print("-----------------------------------------------------------------------------------------")
   print("-----------------------------------------------------------------------------------------")
-  
+
   if (DepthOfCut_P[i,1] > EXPR_new+BU_BGDc8Cos[i,1]){
-    
+
     BU_cutter_engage[i,1] <- 1
   } else {
     BU_cutter_engage[i,1] <- 0
-    
+
   }
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 }
 
 
@@ -805,7 +805,7 @@ par(new=FALSE)
 
 
 
-# 
+#
 # #ROP
 # plot(ROP[,1],a[,1], ylim = rev(range(a[,1])),ylab = "",xlab = "",
 #      col="black",pch=1,title(expression(main = "ROP (ft/hr)")),xlim = c(0,500))
@@ -991,7 +991,7 @@ par(new=FALSE)
 
 
 
-# 
+#
 # #work1
 # plot(work1[1:99,1],a[,1], ylim = rev(range(a[,1])),ylab = "",xlab = "",xlim = c(0,max(work1)),
 #      col="black",pch=1,title(expression(main = "work1"), col.main = "black"))
@@ -1057,8 +1057,8 @@ plot(BU_cutter_engage[1:99,1],a[,1], ylim = rev(range(a[,1])),ylab = "",xlab = "
 
 
 
-# 
-# #alphaAve & BU_alphaAve 
+#
+# #alphaAve & BU_alphaAve
 # plot(alphaAve[,1],a[,1], ylim = rev(range(a[,1])),ylab = "",xlab = "",
 #      col="black",pch=1,title(expression(main = "alphaAve"),adj = 0.5, line = 1.9, col.main = "black"),
 #      xlim = c(0,max(alphaAve,BU_alphaAve)))
@@ -1105,7 +1105,7 @@ plot(a[,1],f2[,1], ylim = rev(range(f2[,1])),ylab = "Depth (ft)",xlab = "",
 # plot(f2[,1],a[,1], ylim = rev(range(a[,1])),ylab = "",xlab = "",
 #      col="black",pch=1,title(expression(main = "Drilling Depth (ft)"),adj = 0.5, line = 1.9, col.main = "black"),
 #      xlim = c(0,max(f2)))
-# 
+#
 
 # #
 # barplot(f1[,1], ylim = rev(range(a[,1])),ylab = "",xlab = "",
