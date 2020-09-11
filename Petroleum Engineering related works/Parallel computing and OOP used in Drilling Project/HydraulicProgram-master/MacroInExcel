@@ -1,0 +1,1084 @@
+Private Sub ComboBox24_Change()
+
+End Sub
+
+Private Sub ComboBox8_Change()
+
+End Sub
+
+Private Sub Frame1_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+
+End Sub
+
+Private Sub Frame1_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label11.Font.Bold = False
+Label11.ForeColor = &H80000012
+Label3.Font.Bold = False
+Label4.Font.Bold = False
+Label5.Font.Bold = False
+Label6.Font.Bold = False
+Label7.Font.Bold = False
+Label8.Font.Bold = False
+Label9.Font.Bold = False
+Label10.Font.Bold = False
+Label26.Caption = "Directory://the casing data that we need for our design"
+'Frame4.Visible = False
+
+End Sub
+
+
+
+Private Sub Frame2_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label26.Caption = "Directory://the casing data/d:c\\cells.."
+End Sub
+
+Private Sub Frame3_Click()
+
+End Sub
+
+Private Sub Frame4_Click()
+
+End Sub
+
+Private Sub Frame4_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label27.Font.Bold = False
+Label40.Font.Bold = False
+Label41.Font.Bold = False
+Label43.Font.Bold = False
+Label28.Font.Bold = False
+Label34.Font.Bold = False
+Label35.Font.Bold = False
+Label36.Font.Bold = False
+Label39.Font.Bold = False
+
+
+
+
+End Sub
+
+'Private Sub Frame3_Click()
+
+'If Cells(100, 102) = 1 Then
+'Frame3.Height = 234
+'Frame3.Width = 474
+'Cells(100, 102) = 0
+'Frame1.Enabled = False
+'Frame2.Enabled = False
+
+'Else
+'Frame3.Height = 15
+'Frame3.Width = 66
+'Cells(100, 102) = 1
+'Frame1.Enabled = True
+'Frame2.Enabled = True
+
+'End If
+
+
+
+
+
+'Private Sub Frame3_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+'Label26.Caption = "the Nuzzel data on specify location in d://excel"
+'End Sub
+
+Private Sub Label1_Click()
+
+End Sub
+
+Private Sub Label10_Click()
+Label10.Enabled = False
+TextBox7.Enabled = True
+ComboBox43.Visible = True
+ComboBox44.Visible = True
+ComboBox45.Visible = True
+ComboBox46.Visible = True
+ComboBox47.Visible = True
+ComboBox48.Visible = True
+
+End Sub
+
+Private Sub Label10_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label10.Font.Bold = True
+End Sub
+
+Private Sub Label11_Click()
+Label3.Enabled = True
+Label4.Enabled = True
+Label5.Enabled = True
+Label6.Enabled = True
+Label7.Enabled = True
+Label8.Enabled = True
+Label9.Enabled = True
+Label10.Enabled = True
+'-----
+TextBox1.Value = Clear
+
+TextBox2.Value = Clear
+TextBox3.Value = Clear
+TextBox4.Value = Clear
+TextBox5.Value = Clear
+TextBox6.Value = Clear
+TextBox7.Value = Clear
+TextBox8.Value = Clear
+'enable comboboxes
+
+ComboBox1.Visible = False
+ComboBox2.Visible = False
+ComboBox3.Visible = False
+ComboBox4.Visible = False
+ComboBox5.Visible = False
+ComboBox6.Visible = False
+ComboBox7.Visible = False
+ComboBox8.Visible = False
+ComboBox9.Visible = False
+ComboBox10.Visible = False
+
+ComboBox11.Visible = False
+ComboBox12.Visible = False
+ComboBox13.Visible = False
+ComboBox14.Visible = False
+ComboBox15.Visible = False
+ComboBox16.Visible = False
+ComboBox17.Visible = False
+ComboBox18.Visible = False
+ComboBox19.Visible = False
+ComboBox20.Visible = False
+
+ComboBox21.Visible = False
+ComboBox22.Visible = False
+ComboBox23.Visible = False
+ComboBox24.Visible = False
+ComboBox25.Visible = False
+ComboBox26.Visible = False
+ComboBox27.Visible = False
+ComboBox28.Visible = False
+ComboBox29.Visible = False
+ComboBox30.Visible = False
+
+ComboBox31.Visible = False
+ComboBox32.Visible = False
+ComboBox33.Visible = False
+ComboBox34.Visible = False
+ComboBox35.Visible = False
+ComboBox36.Visible = False
+ComboBox37.Visible = False
+ComboBox38.Visible = False
+ComboBox39.Visible = False
+ComboBox40.Visible = False
+
+ComboBox41.Visible = False
+ComboBox42.Visible = False
+ComboBox43.Visible = False
+ComboBox44.Visible = False
+ComboBox45.Visible = False
+ComboBox46.Visible = False
+ComboBox47.Visible = False
+ComboBox48.Visible = False
+'-----------------------------
+ComboBox1.Value = clc
+ComboBox2.Value = clc
+ComboBox3.Value = clc
+ComboBox4.Value = clc
+ComboBox5.Value = clc
+ComboBox6.Value = clc
+ComboBox7.Value = clc
+ComboBox8.Value = clc
+ComboBox9.Value = clc
+ComboBox10.Value = clc
+
+ComboBox11.Value = clc
+ComboBox12.Value = clc
+ComboBox13.Value = clc
+ComboBox14.Value = clc
+ComboBox15.Value = clc
+ComboBox16.Value = clc
+ComboBox17.Value = clc
+ComboBox18.Value = clc
+ComboBox19.Value = clc
+ComboBox20.Value = clc
+
+ComboBox21.Value = clc
+ComboBox22.Value = clc
+ComboBox23.Value = clc
+ComboBox24.Value = clc
+ComboBox25.Value = clc
+ComboBox26.Value = clc
+ComboBox27.Value = clc
+ComboBox28.Value = clc
+ComboBox29.Value = clc
+ComboBox30.Value = clc
+
+ComboBox31.Value = clc
+ComboBox32.Value = clc
+ComboBox33.Value = clc
+ComboBox34.Value = clc
+ComboBox35.Value = clc
+ComboBox36.Value = clc
+ComboBox37.Value = clc
+ComboBox38.Value = clc
+ComboBox39.Value = clc
+ComboBox40.Value = clc
+
+ComboBox41.Value = clc
+ComboBox42.Value = clc
+ComboBox43.Value = clc
+ComboBox44.Value = clc
+ComboBox45.Value = clc
+ComboBox46.Value = clc
+ComboBox47.Value = clc
+ComboBox48.Value = clc
+End Sub
+
+Private Sub Label11_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label11.Font.Bold = True
+Label11.ForeColor = &HFF&
+
+End Sub
+
+Private Sub Label14_Click()
+
+End Sub
+
+Private Sub Label26_Click()
+
+End Sub
+
+Private Sub Label27_Click()
+UserForm2.Show
+End Sub
+
+Private Sub Label27_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label27.Font.Bold = True
+
+End Sub
+
+Private Sub Label28_Click()
+UserForm11.Show
+'depth
+Cells(5, 5) = TextBox1.Value
+Cells(25, 4) = TextBox8.Value
+Cells(67, 5) = TextBox2.Value
+Cells(129, 5) = TextBox3.Value
+Cells(191, 5) = TextBox4.Value
+Cells(253, 5) = TextBox5.Value
+Cells(315, 5) = TextBox6.Value
+
+
+
+
+
+
+'Cells(25, 5) = TextBox1.Value
+
+'surface type
+Cells(5, 4) = ComboBox49.Value
+Cells(67, 4) = ComboBox49.Value
+Cells(129, 4) = ComboBox49.Value
+Cells(191, 4) = ComboBox49.Value
+Cells(253, 4) = ComboBox49.Value
+Cells(315, 4) = ComboBox49.Value
+'pump type
+Cells(15, 2) = ComboBox50.Value
+Cells(77, 2) = ComboBox50.Value
+Cells(139, 2) = ComboBox50.Value
+Cells(201, 2) = ComboBox50.Value
+Cells(263, 2) = ComboBox50.Value
+Cells(325, 2) = ComboBox50.Value
+'volume eff
+Cells(19, 2) = TextBox9.Value
+Cells(81, 2) = TextBox9.Value
+Cells(143, 2) = TextBox9.Value
+Cells(205, 2) = TextBox9.Value
+Cells(267, 2) = TextBox9.Value
+Cells(329, 2) = TextBox9.Value
+'max all spm
+Cells(20, 2) = TextBox10.Value
+Cells(82, 2) = TextBox10.Value
+Cells(144, 2) = TextBox10.Value
+Cells(206, 2) = TextBox10.Value
+Cells(268, 2) = TextBox10.Value
+Cells(330, 2) = TextBox10.Value
+'max pump operation
+Cells(21, 2) = TextBox11.Value
+Cells(83, 2) = TextBox11.Value
+Cells(145, 2) = TextBox11.Value
+Cells(207, 2) = TextBox11.Value
+Cells(269, 2) = TextBox11.Value
+Cells(331, 2) = TextBox11.Value
+'DP DC id od
+Cells(5, 3) = ComboBox7.Value
+Cells(5, 2) = ComboBox8.Value
+Cells(7, 3) = ComboBox11.Value
+Cells(7, 2) = ComboBox12.Value
+'----
+Cells(67, 3) = ComboBox13.Value
+Cells(67, 2) = ComboBox14.Value
+Cells(69, 3) = ComboBox17.Value
+Cells(69, 2) = ComboBox18.Value
+'----
+Cells(129, 3) = ComboBox19.Value
+Cells(129, 2) = ComboBox20.Value
+Cells(131, 3) = ComboBox23.Value
+Cells(131, 2) = ComboBox24.Value
+'------------------------------
+Cells(191, 3) = ComboBox25.Value
+Cells(191, 2) = ComboBox26.Value
+Cells(193, 3) = ComboBox29.Value
+Cells(193, 2) = ComboBox30.Value
+'----
+Cells(253, 3) = ComboBox31.Value
+Cells(253, 2) = ComboBox32.Value
+Cells(255, 3) = ComboBox35.Value
+Cells(255, 2) = ComboBox36.Value
+'----
+Cells(315, 3) = ComboBox37.Value
+Cells(315, 2) = ComboBox38.Value
+Cells(317, 3) = ComboBox41.Value
+Cells(317, 2) = ComboBox42.Value
+
+
+
+
+
+Cells(87, 4) = TextBox2.Value
+
+Cells(149, 4) = TextBox3.Value
+Cells(211, 4) = TextBox4.Value
+Cells(273, 4) = TextBox5.Value
+Cells(335, 4) = TextBox6.Value
+
+
+
+
+
+
+
+End Sub
+
+Private Sub Label28_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label28.Font.Bold = True
+
+End Sub
+
+Private Sub Label3_Click()
+Label3.Enabled = False
+TextBox1.Enabled = True
+ComboBox1.Visible = True
+ComboBox2.Visible = True
+ComboBox3.Visible = True
+ComboBox4.Visible = True
+ComboBox5.Visible = True
+ComboBox6.Visible = True
+
+
+
+
+
+
+
+
+
+
+End Sub
+
+Private Sub CheckBox1_Click()
+If CheckBox1.Value = True Then
+TextBox1.Enabled = True
+ComboBox1.Enabled = True
+Else
+TextBox1.Enabled = False
+ComboBox1.Enabled = False
+
+End If
+
+
+End Sub
+
+Private Sub CheckBox2_Click()
+If CheckBox2.Value = True Then
+TextBox8.Enabled = True
+ComboBox2.Enabled = True
+Else
+TextBox8.Enabled = False
+ComboBox2.Enabled = False
+
+End If
+End Sub
+
+Private Sub CheckBox3_Click()
+
+End Sub
+
+Private Sub Frame1_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+'Frame1.Font.Bold = False
+'Frame1.Height = 180
+
+End Sub
+
+
+Private Sub Label3_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label3.Font.Bold = True
+End Sub
+
+Private Sub Label34_Click()
+fileSaveName = Application.GetSaveAsFilename(InitialFileName:=ActiveWorkbook.Path, FileFilter:="Excel Files (*.xls), *.xls")
+    If fileSaveName <> False Then
+        msg = "A file named '" + fileSaveName + "' already exists in this location. Do you want to replace it?"
+        
+        'Define name and directory to save active workbook to
+        'check for existing file
+        ExistFile = Dir(fileSaveName)
+        If ExistFile <> "" Then
+            If MsgBox(msg, vbQuestion + vbYesNo) = vbYes Then
+                'OK Chosen, replace following line with desired code
+                ActiveWorkbook.SaveCopyAs Filename:=fileSaveName
+            Else
+                'Cancel chosen, replace following line with desired code
+            End If
+                'If file does not exist, save file
+        Else
+            ActiveWorkbook.SaveAs Filename:=fileSaveName
+        End If
+    End If
+
+End Sub
+
+Private Sub Label34_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label26.Caption = "Save as"
+Label34.Font.Bold = True
+
+End Sub
+
+Private Sub Label35_Click()
+    ActiveSheet.PageSetup.PrintArea = _
+        "$A$1:$F$29,$A$31:$E$61,$A$63:$F$91,$A$93:$G$123,$A$125:$F$153,$A$155:$G$185,$A$187:$F$215,$A$217:$G$247,$A$249:$F$277,$A$279:$G$309,$A$311:$F$339,$A$341:$G$371"
+
+    Application.Dialogs(xlDialogPrint).Show
+
+End Sub
+
+Private Sub Label35_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label26.Caption = "Print"
+Label35.Font.Bold = True
+End Sub
+
+Private Sub Label36_Click()
+UserForm3.Show
+UserForm9.Show
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+End Sub
+
+Private Sub Label36_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+
+End Sub
+
+Private Sub Label36_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label26.Caption = "Make a Summary"
+Label36.Font.Bold = True
+
+End Sub
+
+Private Sub Label39_Click()
+    ActiveWorkbook.Save
+
+
+End Sub
+
+Private Sub Label39_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label39.Font.Bold = True
+End Sub
+
+Private Sub Label4_Click()
+Label4.Enabled = False
+TextBox8.Enabled = True
+
+ComboBox7.Visible = True
+ComboBox8.Visible = True
+ComboBox9.Visible = True
+ComboBox10.Visible = True
+ComboBox11.Visible = True
+ComboBox12.Visible = True
+
+End Sub
+
+Private Sub Label4_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label4.Font.Bold = True
+End Sub
+
+Private Sub Label40_Click()
+UserForm5.Show
+
+End Sub
+
+Private Sub Label40_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label40.Font.Bold = True
+
+End Sub
+
+Private Sub Label41_Click()
+UserForm6.Show
+End Sub
+
+Private Sub Label41_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label41.Font.Bold = True
+
+End Sub
+
+Private Sub Label42_Click()
+
+End Sub
+
+Private Sub Label42_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label42.Font.Bold = True
+'Frame4.Visible = True
+
+End Sub
+
+Private Sub Label43_Click()
+UserForm7.Show
+
+End Sub
+
+Private Sub Label43_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label43.Font.Bold = True
+Label28.Font.Bold = False
+
+End Sub
+
+Private Sub Label45_Click()
+    Application.WindowState = xlMinimized
+
+End Sub
+
+Private Sub Label45_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label45.Font.Bold = True
+
+End Sub
+
+Private Sub Label5_Click()
+Label5.Enabled = False
+TextBox2.Enabled = True
+
+
+ComboBox13.Visible = True
+ComboBox14.Visible = True
+ComboBox15.Visible = True
+ComboBox16.Visible = True
+ComboBox17.Visible = True
+ComboBox18.Visible = True
+
+End Sub
+
+Private Sub Label5_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = True
+End Sub
+
+Private Sub Label6_Click()
+Label6.Enabled = False
+TextBox3.Enabled = True
+ComboBox19.Visible = True
+ComboBox20.Visible = True
+ComboBox21.Visible = True
+ComboBox22.Visible = True
+ComboBox23.Visible = True
+ComboBox24.Visible = True
+
+End Sub
+
+Private Sub Label6_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label6.Font.Bold = True
+End Sub
+
+Private Sub Label7_Click()
+Label7.Enabled = False
+TextBox4.Enabled = True
+ComboBox25.Visible = True
+ComboBox26.Visible = True
+ComboBox27.Visible = True
+ComboBox28.Visible = True
+ComboBox29.Visible = True
+ComboBox30.Visible = True
+
+End Sub
+
+Private Sub Label7_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = True
+End Sub
+
+Private Sub Label8_Click()
+
+
+Label8.Enabled = False
+TextBox5.Enabled = True
+
+ComboBox31.Visible = True
+ComboBox32.Visible = True
+ComboBox33.Visible = True
+ComboBox34.Visible = True
+ComboBox35.Visible = True
+ComboBox36.Visible = True
+
+End Sub
+
+Private Sub Label8_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label8.Font.Bold = True
+End Sub
+
+Private Sub Label9_Click()
+
+
+
+Label9.Enabled = False
+TextBox6.Enabled = True
+
+ComboBox37.Visible = True
+ComboBox38.Visible = True
+ComboBox39.Visible = True
+ComboBox40.Visible = True
+ComboBox41.Visible = True
+ComboBox42.Visible = True
+
+
+
+
+
+
+
+
+'Label8.Enabled = False
+End Sub
+
+Private Sub Label9_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label9.Font.Bold = True
+End Sub
+
+Private Sub ListBox1_Click()
+
+End Sub
+
+Private Sub TextBox1_Change()
+
+End Sub
+
+'Private Sub TextBox1_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+'UserForm7.Show
+
+'End Sub
+
+Private Sub UserForm_Click()
+'Dim q
+'q = True
+'If q = True Then
+'UserForm1.Height = 276
+'UserForm1.Width = 176
+'Else
+'UserForm1.Height = 398
+'UserForm1.Width = 593
+'End If
+End Sub
+
+
+Private Sub UserForm_Initialize()
+OptionButton2.Value = True
+Frame4.Visible = True
+
+'ListBox1.RowSource = "n4:ae23"
+
+'ListBox2.RowSource = "am13:be22"
+ComboBox49.AddItem "1"
+ComboBox49.AddItem "2"
+ComboBox49.AddItem "3"
+ComboBox49.AddItem "4"
+ComboBox50.AddItem "12-P-160"
+ComboBox50.AddItem "10-P-130"
+ComboBox50.AddItem "9-P-100"
+ComboBox50.AddItem "8-P-80"
+
+'-----------------------------
+Cells(100, 100) = 1
+Cells(100, 101) = 1
+Cells(100, 102) = 1
+
+'-------------------------
+'Frame1.Height = 15
+'Frame1.Left = 6
+'Frame1.Top = 12
+'Frame1.Width = 66
+
+'Frame2.Height = 15
+'Frame2.Left = 6
+'Frame2.Top = 30
+'Frame2.Width = 66
+
+'Frame3.Height = 15
+'Frame3.Left = 6
+'Frame3.Top = 48
+'Frame3.Width = 66
+
+'-------------------------
+TextBox1.Enabled = False
+TextBox2.Enabled = False
+TextBox3.Enabled = False
+TextBox4.Enabled = False
+TextBox5.Enabled = False
+TextBox6.Enabled = False
+TextBox7.Enabled = False
+TextBox8.Enabled = False
+
+
+
+
+Label3.Enabled = True
+Label4.Enabled = True
+Label5.Enabled = True
+Label6.Enabled = True
+Label7.Enabled = True
+'Label8.Enabled = False
+'----------------------diable comboboxes----------------------
+ComboBox1.Visible = False
+ComboBox2.Visible = False
+ComboBox3.Visible = False
+ComboBox4.Visible = False
+ComboBox5.Visible = False
+ComboBox6.Visible = False
+ComboBox7.Visible = False
+ComboBox8.Visible = False
+ComboBox9.Visible = False
+ComboBox10.Visible = False
+
+ComboBox11.Visible = False
+ComboBox12.Visible = False
+ComboBox13.Visible = False
+ComboBox14.Visible = False
+ComboBox15.Visible = False
+ComboBox16.Visible = False
+ComboBox17.Visible = False
+ComboBox18.Visible = False
+ComboBox19.Visible = False
+ComboBox20.Visible = False
+
+ComboBox21.Visible = False
+ComboBox22.Visible = False
+ComboBox23.Visible = False
+ComboBox24.Visible = False
+ComboBox25.Visible = False
+ComboBox26.Visible = False
+ComboBox27.Visible = False
+ComboBox28.Visible = False
+ComboBox29.Visible = False
+ComboBox30.Visible = False
+
+ComboBox31.Visible = False
+ComboBox32.Visible = False
+ComboBox33.Visible = False
+ComboBox34.Visible = False
+ComboBox35.Visible = False
+ComboBox36.Visible = False
+ComboBox37.Visible = False
+ComboBox38.Visible = False
+ComboBox39.Visible = False
+ComboBox40.Visible = False
+
+ComboBox41.Visible = False
+ComboBox42.Visible = False
+ComboBox43.Visible = False
+ComboBox44.Visible = False
+ComboBox45.Visible = False
+ComboBox46.Visible = False
+ComboBox47.Visible = False
+ComboBox48.Visible = False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'----------------------DP id in inch----------------------
+ComboBox1.AddItem 4.778
+ComboBox1.AddItem 4.276
+ComboBox1.AddItem 3.067
+
+ComboBox7.AddItem 4.778
+ComboBox7.AddItem 4.276
+ComboBox7.AddItem 3.067
+
+ComboBox13.AddItem 4.778
+ComboBox13.AddItem 4.276
+ComboBox13.AddItem 3.067
+
+
+ComboBox19.AddItem 4.778
+ComboBox19.AddItem 4.276
+ComboBox19.AddItem 3.067
+
+ComboBox25.AddItem 4.778
+ComboBox25.AddItem 4.276
+ComboBox25.AddItem 3.067
+
+ComboBox31.AddItem 4.778
+ComboBox31.AddItem 4.276
+ComboBox31.AddItem 3.067
+
+ComboBox37.AddItem 4.778
+ComboBox37.AddItem 4.276
+ComboBox37.AddItem 3.067
+
+ComboBox43.AddItem 4.778
+ComboBox43.AddItem 4.276
+ComboBox43.AddItem 3.067
+'----------------------DP od in inch----------------------
+ComboBox2.AddItem 5.5
+ComboBox2.AddItem 5
+ComboBox2.AddItem 3.5
+
+ComboBox8.AddItem 5.5
+ComboBox8.AddItem 5
+ComboBox8.AddItem 3.5
+
+ComboBox14.AddItem 5.5
+ComboBox14.AddItem 5
+ComboBox14.AddItem 3.5
+
+
+ComboBox20.AddItem 5.5
+ComboBox20.AddItem 5
+ComboBox20.AddItem 3.5
+
+ComboBox26.AddItem 5.5
+ComboBox26.AddItem 5
+ComboBox26.AddItem 3.5
+
+ComboBox32.AddItem 5.5
+ComboBox32.AddItem 5
+ComboBox32.AddItem 3.5
+
+ComboBox38.AddItem 5.5
+ComboBox38.AddItem 5
+ComboBox38.AddItem 3.5
+
+ComboBox44.AddItem 5.5
+ComboBox44.AddItem 5
+ComboBox44.AddItem 3.5
+'----------------------HDP id in inch----------------------
+ComboBox3.AddItem 3.313
+ComboBox3.AddItem 3
+ComboBox3.AddItem 2.063
+
+ComboBox9.AddItem 3.313
+ComboBox9.AddItem 3
+ComboBox9.AddItem 2.063
+
+ComboBox15.AddItem 3.313
+ComboBox15.AddItem 3
+ComboBox15.AddItem 2.063
+
+
+ComboBox21.AddItem 3.313
+ComboBox21.AddItem 3
+ComboBox21.AddItem 2.063
+
+ComboBox27.AddItem 3.313
+ComboBox27.AddItem 3
+ComboBox27.AddItem 2.063
+
+ComboBox33.AddItem 3.313
+ComboBox33.AddItem 3
+ComboBox33.AddItem 2.063
+
+ComboBox39.AddItem 3.313
+ComboBox39.AddItem 3
+ComboBox39.AddItem 2.063
+
+ComboBox45.AddItem 3.313
+ComboBox45.AddItem 3
+ComboBox45.AddItem 2.063
+'----------------------HDP od in inch----------------------
+ComboBox4.AddItem 5.5
+ComboBox4.AddItem 5
+ComboBox4.AddItem 3.5
+
+ComboBox10.AddItem 5.5
+ComboBox10.AddItem 5
+ComboBox10.AddItem 3.5
+
+ComboBox16.AddItem 5.5
+ComboBox16.AddItem 5
+ComboBox16.AddItem 3.5
+
+
+ComboBox22.AddItem 5.5
+ComboBox22.AddItem 5
+ComboBox22.AddItem 3.5
+
+ComboBox28.AddItem 5.5
+ComboBox28.AddItem 5
+ComboBox28.AddItem 3.5
+
+ComboBox34.AddItem 5.5
+ComboBox34.AddItem 5
+ComboBox34.AddItem 3.5
+
+ComboBox40.AddItem 5.5
+ComboBox40.AddItem 5
+ComboBox40.AddItem 3.5
+
+ComboBox46.AddItem 5.5
+ComboBox46.AddItem 5
+ComboBox46.AddItem 3.5
+'----------------------DC id in inch----------------------
+ComboBox5.AddItem 3
+ComboBox5.AddItem 2
+ComboBox5.AddItem 2.875
+
+ComboBox11.AddItem 3
+ComboBox11.AddItem 2
+ComboBox11.AddItem 2.875
+
+ComboBox17.AddItem 3
+ComboBox17.AddItem 2
+ComboBox17.AddItem 2.875
+
+
+ComboBox23.AddItem 3
+ComboBox23.AddItem 2
+ComboBox23.AddItem 2.875
+
+ComboBox29.AddItem 3
+ComboBox29.AddItem 2
+ComboBox29.AddItem 2.875
+
+ComboBox35.AddItem 3
+ComboBox35.AddItem 2
+ComboBox35.AddItem 2.875
+
+ComboBox41.AddItem 3
+ComboBox41.AddItem 2
+ComboBox41.AddItem 2.875
+
+ComboBox47.AddItem 3
+ComboBox47.AddItem 2
+ComboBox47.AddItem 2.875
+'----------------------DC od in inch----------------------
+ComboBox6.AddItem 14
+ComboBox6.AddItem 11
+ComboBox6.AddItem 8.75
+ComboBox6.AddItem 6.25
+ComboBox6.AddItem 4.75
+
+ComboBox12.AddItem 14
+ComboBox12.AddItem 11
+ComboBox12.AddItem 8.75
+ComboBox12.AddItem 6.25
+ComboBox12.AddItem 4.75
+
+ComboBox18.AddItem 14
+ComboBox18.AddItem 11
+ComboBox18.AddItem 8.75
+ComboBox18.AddItem 6.25
+ComboBox18.AddItem 4.75
+
+
+ComboBox24.AddItem 14
+ComboBox24.AddItem 11
+ComboBox24.AddItem 8.75
+ComboBox24.AddItem 6.25
+ComboBox24.AddItem 4.75
+
+ComboBox30.AddItem 14
+ComboBox30.AddItem 11
+ComboBox30.AddItem 8.75
+ComboBox30.AddItem 6.25
+ComboBox30.AddItem 4.75
+
+ComboBox36.AddItem 14
+ComboBox36.AddItem 11
+ComboBox36.AddItem 8.75
+ComboBox36.AddItem 6.25
+ComboBox36.AddItem 4.75
+
+ComboBox42.AddItem 14
+ComboBox42.AddItem 11
+ComboBox42.AddItem 8.75
+ComboBox42.AddItem 6.25
+ComboBox42.AddItem 4.75
+
+ComboBox48.AddItem 14
+ComboBox48.AddItem 11
+ComboBox48.AddItem 8.75
+ComboBox48.AddItem 6.25
+ComboBox48.AddItem 4.75
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+End Sub
+
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label45.Font.Bold = False
+Label27.Font.Bold = False
+Label26.Caption = ""
+'Label42.Font.Bold = False
+'Frame4.Visible = False
+End Sub
+
+Private Sub UserForm_Terminate()
+    ActiveWorkbook.Save
+Application.Quit
+End Sub

@@ -1,0 +1,75 @@
+
+clc
+clear
+%load amin
+
+%%
+%matric rozaye haffariye har well
+NumOfCandidates=20;
+NumOfWells=10;%This is fixed,if u wanna change 
+%              it you must change input mat data
+
+
+%%
+%In  Matris Tartibe Harkate Rig Hast
+
+
+d=zeros(NumOfCandidates,NumOfWells);
+
+for i=1:NumOfCandidates
+    d(i,1:NumOfWells)=randperm(NumOfWells);
+end
+
+%%
+
+%DayDistanceCalc
+
+DayDistance=zeros(NumOfCandidates,1);
+
+for i=1:NumOfCandidates
+    
+    DayDistance(i,1)=DayCalc(d,i,NumOfWells);
+    
+end
+
+%MinDisDay=min(DayDistance(1:NumOfCandidates,1));
+%MinDisDay
+
+%    mi=max(DayDistance(1:NumOfCandidates,1));
+%mi
+%mi-MinDisDay
+%input DayDistance in to d
+for i=1:NumOfCandidates
+    d(i,NumOfWells+1)=DayDistance(i,1);
+end
+
+%Overrall Landscape
+OverLandScape=500;
+%WellLandScapes
+                              %WellLandScapes=zeros(1:NumOfCandidates,1);
+load WellLandScapes
+%WellProductionPowers
+
+for i=1:NumOfCandidates
+    
+    d(i,NumOfWells+2)=WellLandScapes
+        
+end
+
+
+
+
+
+
+                              %WellProductionPowers=zeros(1:NumOfCandidates,1);
+load WellProductionPowers
+
+
+
+
+
+
+
+
+
+

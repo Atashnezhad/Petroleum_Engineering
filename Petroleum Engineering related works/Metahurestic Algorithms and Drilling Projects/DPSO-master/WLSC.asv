@@ -1,0 +1,28 @@
+function [a]=WLSC(d,i,N,O);
+
+a=0;
+
+%*****************************
+load WellLandScapes
+load WellProductionPowers
+%*****************************
+
+NumOfWells=N;
+OverLandScape=O;
+b=0;
+
+for j=1:NumOfWells
+
+    
+    b=WellLandScapes(d(i,j),1)+b;
+    
+a=((OverLandScape-b)*WellProductionPowers(d(i,j),1))+a;
+
+
+
+
+
+end
+disp(a)
+
+end

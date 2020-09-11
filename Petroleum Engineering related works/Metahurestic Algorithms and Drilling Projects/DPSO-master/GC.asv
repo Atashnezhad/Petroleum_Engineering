@@ -1,0 +1,23 @@
+function [npv]=GC(d3,i,NOW,OverLandScape,TravelCostPerDay,bblPrice);
+
+
+
+
+    
+    DayDistance(i,1)=DayCalc(d3,i,NOW);
+    
+    d3(i,NOW+1)=DayDistance(i,1);
+    
+    d3(i,NOW+2)=WLSC(d3,i,NOW,OverLandScape);
+    
+    d3(i,NOW+1)=d3(i,NOW+1)*TravelCostPerDay;
+    d3(i,NOW+2)=d3(i,NOW+2)* bblPrice;
+    
+    npv=d3(i,NOW+2)-d3(i,NOW+1);
+    
+    
+
+
+
+
+end

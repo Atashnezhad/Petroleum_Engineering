@@ -1,0 +1,27 @@
+Columns 1 through 8
+
+          27          33          17          48          36          11          13          42
+
+  Columns 9 through 16
+
+          20          21           5          15          38          25          39          28
+
+  Columns 17 through 24
+
+          12          16          10           3          37          34          40           9
+
+  Columns 25 through 32
+
+          46          26          18          14          22          43          19          49
+
+  Columns 33 through 40
+
+          35           1          32           7           4           6          24          31
+
+  Columns 41 through 48
+
+          41          50           2          23          47          45          29           8
+
+  Columns 49 through 51
+
+          44          30    +29586200

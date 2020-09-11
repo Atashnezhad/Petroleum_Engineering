@@ -1,0 +1,358 @@
+Appendix B: MATLAB Code listing for Meta-Optimized (Tuned) Particle Swarm
+Algorithm to Solve Deviated Wellbore Trajectories Using the Radius of Curvature
+Method
+The following MATLAB code evaluates the Meta-optimized (tuned) PSO algorithms
+developed and applied in this study. It is annotated with comments to clarify the
+function of each section of the code.
+Section 1
+tic
+clc
+clear
+%WMeta, C1Meta and C2Meta were picked up form pederson paper for problems with 5 dimensions
+WMeta=-0.3593;C1Meta=-0.7238;C2Meta=2.0289;
+PI=size(60,60);Global=size(200,1);ITE=0;ITERATIONS=200;VI=size(60,60);PV=size(60);MAT=size(60,60);Goo
+dValues=zeros(200,200);
+%Constraints
+%C1
+CL(1)=-0.5;CU(1)=0;
+%C2
+CL(2)=0;CU(2)=4;
+%w
+CL(3)=-0.5;CU(3)=0;
+%ns
+CL(4)=20;
+CU(4)=70;
+%number of Super-swarms %
+NS=5; % Pederson (2010) suggested NS=47. That value of NS was tried but took too long in this problem for
+the benefits it provided.
+%%
+%Initialize the particle's position with a uniformly distributed random vector between the lower and upper
+boundaries of the search-space.
+for j=1:NS
+for i=1:4
+MAT(i,j)=CL(i) + (CU(i)-CL(i)).*rand;
+end
+end
+%round the number of swarms to a whole number
+for j=1:NS
+MAT(4,j)=round(MAT(4,j));
+end
+c1=MAT(1,1);
+c2=MAT(2,1);
+w=MAT(3,1);
+ns=MAT(4,1);
+%Calculate TMD using proposed input parameters
+%GVmeta=TMDCalculation(c1,c2,w,ns);
+for n=1:NS
+c1=MAT(1,n);
+c2=MAT(2,n);
+w=MAT(3,n);
+ns=MAT(4,n);
+MAT(5, n )=TMDCalculation(c1,c2,w,ns);
+end
+%%
+%SUPERSWARM
+%Initialize the particle's best known position to its initial position.
+for n=1:NS
+for i = 1 : 5
+PI( i, n) = MAT(i, n );
+end
+end
+% Select first particle as best global value.
+% Then compare that particle with other particles to find best global position.
+for i=1:4
+Global(i,1)=PI(i,1);
+end
+GVmeta=PI(5,1);
+%Test to find best global value
+for i=1:NS
+if PI(5,i)<GVmeta
+for j=1:4
+Global(j,1)=PI(j,i);
+end
+GVmeta=PI(5,i);
+end
+end
+%Initialize the particle's velocity.
+for n=1:NS
+for i=1:4
+PV(i)=CU(i)-CL(i);
+VI( i, n)=-PV(i) + (2*PV(i)).*rand;
+end
+end
+%Repeat for the specified number of iterations.
+while ITE<ITERATIONS
+%For each superswarm particle.
+for i=1:NS;
+%For each dimension / variable.
+for d=1:4;
+%Select uniform random numbers with which to adjust behavioral parameters.
+rp=rand;
+rg=rand;
+%Update each particle's velocity.
+VI( d, i)=WMeta* VI(d,i) + C1Meta *rp* (PI(d,i)-MAT(d,i)) + C2Meta* rg* (Global(d)-MAT(d,i));
+end
+%Update each particle's position ensuring it is within the specified upper and lower constraints.
+for d=1:4;
+if MAT(d,i)+VI(d,i)<CL(d)
+MAT(d,i)=CL(d);
+elseif MAT(d,i)+VI(d,i)>CU(d)
+MAT(d,i)=CU(d);
+else
+MAT(d,i)=MAT(d,i)+VI(d,i);
+end
+end
+%Number of swarms could be input as a fixed integer. Here the algorithm searches for number for the optimum
+number of swarms too. Hence, it is necessary to round that number.
+MAT(d,i)=round(MAT(d,i));
+%%
+%SUBSWARM
+c1=MAT(1,i);
+c2=MAT(2,i);
+w=MAT(3,i);
+ns=MAT(4,i);
+%Calls to wellbore trajectory calculation function (see section 2 of this code listing).
+MAT(5, i )=TMDCalculation(c1,c2,w,ns);
+%GVmeta=TMDCalculation(c1,c2,w,ns)
+%Update best known position of each particle.
+if MAT(5,i)<PI(5,i)
+for d=1:4
+PI(d,i)=MAT(d,i);
+end
+PI(d+1,i)=MAT(5,i);
+end
+end
+%Update best global value by comparing updated best position(so far) of each particle relative to best global
+value recorded (so far).
+for i=1:NS
+if PI(5,i)<GVmeta
+for j=1:4
+Global(j,1)=PI(j,i);
+end
+GVmeta=PI(5,i);
+end
+end
+Global(5,1)=GVmeta;
+%Best positions (so far) are saved into the GoodValues matrix
+for j=1:5
+GoodValues(j,ITE+1)=Global(j,1);
+end
+%Plot particle movements for each iteration
+figure (1)
+%C1
+subplot(2,3,1)
+for i=1:1:NS
+plot(ITE,MAT(1,i));
+hold on
+xlabel 'Number of Iterations
+ylabel 'Cognitive (C1)'
+end
+%C2
+subplot(2,3,2)
+for i=1:1:NS
+plot(ITE,MAT(2,i));
+hold on
+xlabel 'Number of Iterations'
+ylabel 'Social (C2)'
+end
+%W
+subplot(2,3,3)
+for i=1:1:NS
+plot(ITE,MAT(3,i));
+hold on
+xlabel 'Number of Iterations'
+ylabel 'Inertia (W)'
+end
+%Number of swarms.
+subplot(2,3,4)
+for i=1:1:NS
+plot(ITE,MAT(4,i));
+hold on
+xlabel 'Number of Iterations'
+ylabel 'Number of Swarms (S)'
+end
+%Good Values
+subplot(2,3,5)
+for i=1:1:NS
+plot(1:ITE,GoodValues(5,1:ITE));
+hold on
+xlabel 'Number of Iterations'
+ylabel 'TMD (ft)'
+end
+ITE=ITE+1;
+end
+toc
+Section 2(subcodes):
+function [GVmeta]=TMDCalculation(C1,C2,W,NS)
+%Input parameters.
+ns=NS;iterations=70;c1=C1;c2=C2;w=W;
+x = 16;n = 0;GVmeta=0;
+mat2=size(60,60);v = size(60,60);mat = size(60, 60);vi=size(60,60);
+pv=size(60);G=size(200);
+format long
+% Repeat calculations three times and then calculate an average.
+for COUNTER=1:3
+%Constraints
+cl(1) = 2500;cl(2) = 10;cl(3) = 40;cl(4) = 90;cl(5) = 270;
+cl(6) = 270;cl(7) = 270;cl(8) = 330;cl(9) = 330;cl(10) = 355;
+cl(11) = 0;cl(12) = 0;cl(13) = 0;cl(14) = 6000;cl(15) = 10000;
+cl(16) = 600;cu(1) = 2500;cu(2) = 20;cu(3) = 70;cu(4) = 95;
+cu(5) = 280;cu(6) = 280;cu(7) = 280;cu(8) = 340;cu(9) = 340;
+cu(10) = 360;cu(11) = 5;cu(12) = 5;cu(13) = 5;cu(14) = 7000;
+cu(15) = 10200;cu(16) = 1000;
+while n<ns;
+for i = 1 : x
+v(i,n+1) = cl(i) + (cu(i)-cl(i)).*rand;
+end
+rad = (3.14159 / 180);
+R1 = 100 / (v(11, n + 1)* rad);
+R3 = 100 / (v(12, n + 1)* rad);
+R5 = 100 / (v(13, n + 1)* rad);
+D1 = R1 * (((v(6, n + 1) - v(5, n + 1)) * rad) ^ 2 * (sin(v(2, n + 1) * rad / 2)) ^ 4 ...
++ ((v(2, n + 1) * rad) ^ 2)) ^ (0.5);
+D2 = (v(14, n + 1) - v(16, n + 1) - D1 * (sin(v(2, n + 1) * rad) - sin(0)) / (v(2, n + 1) * rad - 0)) / cos(v(2, n + 1) *
+rad);
+D3 = R3 * (((v(8, n + 1) - v(7, n + 1)) * rad) ^ 2 * (sin((v(3, n + 1)...
++ v(2, n + 1)) * rad / 2)) ^ 4 + ((v(3, n + 1) - v(2, n + 1)) * rad) ^ 2) ^ (0.5);
+D4 = (v(15, n + 1) - v(14, n + 1) - D3 * (sin(v(3, n + 1) * rad) - sin(v(2, n + 1) * rad)) / (v(3, n + 1) * rad - v(2, n +
+1) * rad)) / cos(v(3, n + 1) * rad);
+D5 = R5 * (((v(10, n + 1) - v(9, n + 1)) * rad) ^ 2 * (sin((v(4, n + 1) + v(3, n + 1)) * rad / 2)) ^ 4 ...
++ ((v(4, n + 1) - v(3, n + 1)) * rad) ^ 2) ^ (0.5);
+z = v(1, n + 1) + D1 + D2 + D3 + D4 + D5 + v(16, n + 1);
+cas1 = v(16, n + 1) + D1 * (sin(v(2, n + 1) * rad) / (v(2, n + 1) * rad));
+cas2 = cas1 + D2 * cos(v(2, n + 1) * rad) + D3 * ((sin(v(3, n + 1) * rad) - sin(v(2, n + 1) * rad)) / ((v(3, n + 1) - v(2,
+n + 1)) * rad));
+cas3 = cas2 + D4 * cos(v(3, n + 1) * rad) + D5 * ((sin(v(4, n + 1) * rad) - sin(v(3, n + 1) * rad)) / ((v(4, n + 1) - v(3,
+n + 1)) * rad));
+phi1=v(2,n+1);
+phi2=v(3,n+1);
+phi3=v(4,n+1);
+Hold1=D2*cos(phi1*rad);
+Hold2=D4*cos(phi2*rad) ;
+tvdbuild1=(D1*(sin(rad*(phi1))-sin(rad*0)))/(phi1*rad);
+tvddrop=D3*(sin(rad*phi2)-sin(rad*phi1))/((phi2-phi1)*rad);
+tvdbuild2=D5*(sin(rad*phi3)-sin(rad*phi2))/((phi3-phi2)*rad);
+TVD=tvdbuild1+tvdbuild2+tvddrop+Hold1+Hold2+v(16,n+1);
+if D1 > 0 && D2 > 0 && D3 > 0 && D4 > 0 && D5 > 0 && cas1 > 1800 &&...
+cas1 < 2200 && cas2 > 7200 && cas2 < 8700 && cas3 > 10835 &&...
+cas3 < 10885 && TVD>10850 && TVD<10900
+for i = 1 : x
+mat(i, n+1) = v(i, n + 1);
+end
+mat(i+1, 1 + n) = z;
+n = n + 1;
+end
+end
+%%
+for i=1:x
+G(i,1)=mat(i,1);
+end
+GV=mat(17,1);
+%Initialize each particle's best known position to its initial position.
+pi=size(60,60);
+for n=1:ns
+for i = 1 : x+1
+pi( i, n) = mat(i, n );
+end
+end
+%Update the swarm's best known position
+s=ns;
+for i=1:s
+if pi(17,i)<GV
+for j=1:x
+G(j,1)=pi(j,i);
+end
+GV=pi(17,i);
+end
+end
+%%
+%Initialize each particle's velocity with a uniform random number.
+for n=1:s
+for i=1:x
+pv(i)=cu(i)-cl(i);
+vi( i, n)=-pv(i) + (2*pv(i)).*rand;
+end
+end
+%Repeat for the specified number of iterations.
+ite=0;
+while ite<iterations
+%For each particle.
+for i=1:s;
+%For each dimension.
+for d=1:x;
+%Select uniform random numbers.
+rp=rand;
+rg=rand;
+%Update each particle's velocity.
+vi( d, i)=w* vi(d,i) + c1 *rp* (pi(d,i)-mat(d,i)) + c2* rg* (G(d)-mat(d,i));
+end
+%Update each particle's position.
+for d=1:x;
+if mat(d,i)+vi(d,i)<cl(d)
+mat2(d,i)=cl(d);
+elseif mat(d,i)+vi(d,i)>cu(d)
+mat2(d,i)=cu(d);
+else
+mat2(d,i)=mat(d,i)+vi(d,i);
+end
+end
+%Evaluate wellbore trajectory components for each new particle.
+rad = (3.14159 / 180);
+R1 = 100 / (mat2(11, i) * rad);
+R3 = 100 / (mat2(12, i) * rad);
+R5 = 100 / (mat2(13, i) * rad);
+D1 = R1 * (((mat2(6, i) - mat2(5, i)) * rad) ^ 2 * (sin(mat2(2, i) * rad / 2)) ^ 4 + ((mat2(2, i ) * rad) ^ 2)) ^ (0.5);
+D2 = (mat2(14, i) - mat2(16, i) - D1 * (sin(mat2(2, i) * rad) - sin(0)) / (mat2(2, i) * rad - 0)) / cos(mat2(2, i) * rad);
+D3 = R3 * (((mat2(8, i) - mat2(7, i)) * rad) ^ 2 * (sin((mat2(3, i) + mat2(2, i)) * rad / 2)) ^ 4 + ((mat2(3, i) - mat2(2,
+i)) * rad) ^ 2) ^ (0.5);
+D4 = (mat2(15, i) - mat2(14, i) - D3 * (sin(mat2(3, i) * rad) - sin(mat2(2, i) * rad)) / (mat2(3, i) * rad - mat2(2, i) *
+rad)) / cos(mat2(3, i) * rad);
+D5 = R5 * (((mat2(10, i) - mat2(9, i)) * rad) ^ 2 * (sin((mat2(4, i) + mat2(3, i)) * rad / 2)) ^ 4 + ((mat2(4, i) -
+mat2(3, i)) * rad) ^ 2) ^ (0.5);
+z = mat2(1, i) + D1 + D2 + D3 + D4 + D5 + mat2(16, i);
+mat2(17,i)=z;
+cas1 = mat2(16, i) + D1 * (sin(mat2(2, i) * rad) / (mat2(2, i) * rad));
+cas2 = cas1 + D2 * cos(mat2(2, i) * rad) + D3 * ((sin(mat2(3, i) * rad) - sin(mat2(2, i) * rad)) / ((mat2(3, i) -
+mat2(2, i)) * rad));
+cas3 = cas2 + D4 * cos(mat2(3, i) * rad) + D5 * ((sin(mat2(4, i) * rad) - sin(mat2(3, i) * rad)) / ((mat2(4, i) -
+mat2(3, i)) * rad));
+phi1=mat2(2,i);
+phi2=mat2(3,i);
+phi3=mat2(4,i);
+Hold1=D2*cos(phi1*rad);
+Hold2=D4*cos(phi2*rad) ;
+tvdbuild1=(D1*(sin(rad*(phi1))-sin(rad*0)))/(phi1*rad);
+tvddrop=D3*(sin(rad*phi2)-sin(rad*phi1))/((phi2-phi1)*rad);
+tvdbuild2=D5*(sin(rad*phi3)-sin(rad*phi2))/((phi3-phi2)*rad);
+TVD=tvdbuild1+tvdbuild2+tvddrop+Hold1+Hold2+mat2(16,i);
+%If all the following constraints are satisfied transfer mat2 matrix values into matrix mat.
+if D1 > 0 && D2 > 0 && D3 > 0 && D4 > 0 &&...
+D5 > 0 && cas1 > 1800 && cas1 < 2200 && cas2 > 7200 &&...
+cas2 < 8700 && cas3 > 10835 && cas3 < 10885 &&...
+TVD > 10850 && TVD < 10900
+for d=1:x
+mat(d,i)=mat2(d,i);
+end
+mat(17,i)=mat2(17,i);
+%Update each particle's best known position.
+if z<pi(17,i)
+for d=1:x
+pi(d,i)=mat(d,i);
+end
+pi(17,i)=z;
+end
+%Update the swarm's best known position.
+if z<GV
+for d=1:x
+G(d)=mat(d,i);
+end
+GV=z;
+end
+end
+end
+ite=ite+1;
+end
+GVmeta=GV+GVmeta;
+end
+GVmeta=GVmeta/COUNTER;
+end

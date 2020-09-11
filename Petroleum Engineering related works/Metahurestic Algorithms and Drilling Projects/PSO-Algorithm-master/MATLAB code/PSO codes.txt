@@ -1,0 +1,275 @@
+Appendix A: MATLAB Code listing for Meta-Optimized Particle Swarm
+Algorithm to Solve Deviated Wellbore Trajectories Using the Radius of Curvature
+Method
+The following MATLAB code evaluates the non-tuned PSO algorithms developed and
+applied in this study. It is annotated with comments to clarify the function of each
+section of the code.
+clc
+clear
+%Place the final optimized result (i.e.16 variables plus TMD objective function into the IU matrix, which is used
+to draw boxplots (see Figure 8)
+IU=zeros(17,100);
+COUNTER=1;
+%Run the whole algorithm RWTPth times. For one execution of the algorithm RWTPh equals 1. To find an
+average of multiple runs RWTPh should be greater than 1 (e.g. 10 to provide sufficient data for boxplots)
+RWTPth=1;
+while COUNTER<RWTPth+1
+k=0;h=0;t=0;a1=0;E1=size(1,400);mat2=size(60,60);v = size(60,60);
+mat = size(60, 60);vi=size(60,60);pv=size(60);E=size(60);n = 0;
+G=size(200);
+%For the initial meta-optimization step, values for PSO behavioral parameters c1, c2 and w from Pederson
+2010 are applied. Subsequently the values for the behavioral parameters c1, c2 and w from the best TMD
+solution in Table 6 (i.e. Run1) are applied.
+c1=-0.414658484;% Pedersen(2010)=0.2699;
+c2=2.354873241;% Pedersen(2010)=4.2373;
+w=0;% Pedersen(2010)=-0.67;
+%Number of variables in problem.
+x = 16;
+%For the initial meta-optimization step the number of particle swarms (ns) applied is 45 (Pedersen, 2010).
+Subsequently the number of swarms applied is 65 from the best TMD solution in Table 6 (i.e. Run1).
+ns=65;
+iterations=200;
+format long
+disp('Random TMD');
+%%
+%Variable constraints: lower limits cl; upper limits cu
+cl(1) = 2500;cl(2) = 10;cl(3) = 40;cl(4) = 90;cl(5) = 270;
+cl(6) = 270;cl(7) = 270;cl(8) = 330;cl(9) = 330;cl(10) = 355;
+cl(11) = 0;cl(12) = 0;cl(13) = 0;cl(14) = 6000;cl(15) = 10000;
+cl(16) = 600;cu(1) = 2500;cu(2) = 20;cu(3) = 70;cu(4) = 95;
+cu(5) = 280;cu(6) = 280;cu(7) = 280;cu(8) = 340;cu(9) = 340;
+cu(10) = 360;cu(11) = 5;cu(12) = 5;cu(13) = 5;cu(14) = 7000;
+cu(15) = 10200;cu(16) = 1000;
+%Initialize the particle positions are generated with a uniformly distributed random vector between the lower and
+upper limits of each variable.
+while n<ns;
+for i = 1 : x
+v(i,n+1) = cl(i) + (cu(i)-cl(i)).*rand;
+end
+%Wellbore trajectory radius of curvature calculations
+rad = (3.14159 / 180);
+R1 = 100 / (v(11, n + 1)* rad);
+R3 = 100 / (v(12, n + 1)* rad);
+R5 = 100 / (v(13, n + 1)* rad);
+D1 = R1 * (((v(6, n + 1) - v(5, n + 1)) * rad) ^ 2 * (sin(v(2, n + 1) * rad / 2)) ^ 4 ...
++ ((v(2, n + 1) * rad) ^ 2)) ^ (0.5);
+D2 = (v(14, n + 1) - v(16, n + 1) - D1 * (sin(v(2, n + 1) * rad) - sin(0)) / (v(2, n + 1) * rad - 0)) / cos(v(2, n + 1) *
+rad);
+D3 = R3 * (((v(8, n + 1) - v(7, n + 1)) * rad) ^ 2 * (sin((v(3, n + 1)...
++ v(2, n + 1)) * rad / 2)) ^ 4 + ((v(3, n + 1) - v(2, n + 1)) * rad) ^ 2) ^ (0.5);
+D4 = (v(15, n + 1) - v(14, n + 1) - D3 * (sin(v(3, n + 1) * rad) - sin(v(2, n + 1) * rad)) / (v(3, n + 1) * rad - v(2, n +
+1) * rad)) / cos(v(3, n + 1) * rad);
+D5 = R5 * (((v(10, n + 1) - v(9, n + 1)) * rad) ^ 2 * (sin((v(4, n + 1) + v(3, n + 1)) * rad / 2)) ^ 4 ...
++ ((v(4, n + 1) - v(3, n + 1)) * rad) ^ 2) ^ (0.5);
+% z calculates the TMD of the entire wellbore
+z = v(1, n + 1) + D1 + D2 + D3 + D4 + D5 + v(16, n + 1);
+cas1 = v(16, n + 1) + D1 * (sin(v(2, n + 1) * rad) / (v(2, n + 1) * rad));
+cas2 = cas1 + D2 * cos(v(2, n + 1) * rad) + D3 * ((sin(v(3, n + 1) * rad) - sin(v(2, n + 1) * rad)) / ((v(3, n + 1) - v(2,
+n + 1)) * rad));
+cas3 = cas2 + D4 * cos(v(3, n + 1) * rad) + D5 * ((sin(v(4, n + 1) * rad) - sin(v(3, n + 1) * rad)) / ((v(4, n + 1) - v(3,
+n + 1)) * rad));
+phi1=v(2,n+1);
+phi2=v(3,n+1);
+phi3=v(4,n+1);
+Hold1=D2*cos(phi1*rad);
+Hold2=D4*cos(phi2*rad) ;
+tvdbuild1=(D1*(sin(rad*(phi1))-sin(rad*0)))/(phi1*rad);
+tvddrop=D3*(sin(rad*phi2)-sin(rad*phi1))/((phi2-phi1)*rad);
+tvdbuild2=D5*(sin(rad*phi3)-sin(rad*phi2))/((phi3-phi2)*rad);
+TVD=tvdbuild1+tvdbuild2+tvddrop+Hold1+Hold2+v(16,n+1);
+%The following wellbore constraints are also applied.
+if D1 > 0 && D2 > 0 && D3 > 0 && D4 > 0 && D5 > 0 && cas1 > 1800 &&...
+cas1 < 2200 && cas2 > 7200 && cas2 < 8700 && cas3 > 10835 &&...
+cas3 < 10885 && TVD>10850 && TVD<10900
+%Values of matrix v are only passed to matrix mat if they satisfy all the wellbore constraints (i.e. provide a valid
+solution).
+for i = 1 : x
+mat(i, n+1) = v(i, n + 1);
+end
+mat(i+1, 1 + n) = z;
+n = n + 1;
+%Display the initial values which satisfy all constraints
+disp(z);
+end
+end
+disp('Search for better answers');
+%Start timer
+tic
+%%
+% Input first column of mat as best global values into G. If better solutions are found in subsequent runs then
+the values in matrix G column 1 are replaced with those better values.
+for i=1:x
+G(i,1)=mat(i,1);
+end
+% The best global value for the TMD objective function is placed in GV and replaced with better values as they
+are found.
+GV=mat(17,1);
+%Initialize the matrix holding each particles best known position (i.e. pi) to each particles initial position
+pi=size(60,60);
+for n=1:ns
+for i = 1 : x+1
+pi( i, n) = mat(i, n );
+end
+end
+%Update each particle swarm's best known position.
+s=ns;
+for i=1:s
+if pi(17,i)<GV
+for j=1:x
+G(j,1)=pi(j,i);
+end
+GV=pi(17,i);
+end
+end
+%Initialize each particle's velocity, vi, with a uniformly distributed random vector between the lower and upper
+limits of each variable.
+for n=1:s
+for i=1:x
+pv(i)=cu(i)-cl(i);
+vi( i, n)=-pv(i) + (2*pv(i)).*rand;
+end
+end
+%The algorithm is repeated for the specified number of iterations.
+ite=0;
+tic
+while ite<iterations
+%For each particle i
+for i=1:s;
+%For each dimension (variable) d
+for d=1:x;
+%Select uniformly distributed random numbers with which to adjust behavioral parameters applied to each
+particle's velocity.
+rp=rand;
+rg=rand;
+%Update each particle's velocity.
+vi( d, i)=w* vi(d,i) + c1 *rp* (pi(d,i)-mat(d,i)) + c2* rg* (G(d)-mat(d,i));
+end
+%Update each particle's position with the newly adjusted velocity
+%Test that each adjusted variable position is within its upper and lower limits.
+for d=1:x;
+if mat(d,i)+vi(d,i)<cl(d)
+mat2(d,i)=cl(d);
+elseif mat(d,i)+vi(d,i)>cu(d)
+mat2(d,i)=cu(d);
+else
+mat2(d,i)=mat(d,i)+vi(d,i);
+end
+end
+%Evaluate wellbore trajectory for newly generated particle positions.
+rad = (3.14159 / 180);
+R1 = 100 / (mat2(11, i) * rad);
+R3 = 100 / (mat2(12, i) * rad);
+R5 = 100 / (mat2(13, i) * rad);
+D1 = R1 * (((mat2(6, i) - mat2(5, i)) * rad) ^ 2 * (sin(mat2(2, i) * rad / 2)) ^ 4 + ((mat2(2, i ) * rad) ^ 2)) ^ (0.5);
+D2 = (mat2(14, i) - mat2(16, i) - D1 * (sin(mat2(2, i) * rad) - sin(0)) / (mat2(2, i) * rad - 0)) / cos(mat2(2, i) * rad);
+D3 = R3 * (((mat2(8, i) - mat2(7, i)) * rad) ^ 2 * (sin((mat2(3, i) + mat2(2, i)) * rad / 2)) ^ 4 + ((mat2(3, i) - mat2(2,
+i)) * rad) ^ 2) ^ (0.5);
+D4 = (mat2(15, i) - mat2(14, i) - D3 * (sin(mat2(3, i) * rad) - sin(mat2(2, i) * rad)) / (mat2(3, i) * rad - mat2(2, i) *
+rad)) / cos(mat2(3, i) * rad);
+D5 = R5 * (((mat2(10, i) - mat2(9, i)) * rad) ^ 2 * (sin((mat2(4, i) + mat2(3, i)) * rad / 2)) ^ 4 + ((mat2(4, i) -
+mat2(3, i)) * rad) ^ 2) ^ (0.5);
+z = mat2(1, i) + D1 + D2 + D3 + D4 + D5 + mat2(16, i);
+mat2(17,i)=z;
+cas1 = mat2(16, i) + D1 * (sin(mat2(2, i) * rad) / (mat2(2, i) * rad));
+cas2 = cas1 + D2 * cos(mat2(2, i) * rad) + D3 * ((sin(mat2(3, i) * rad) - sin(mat2(2, i) * rad)) / ((mat2(3, i) -
+mat2(2, i)) * rad));
+cas3 = cas2 + D4 * cos(mat2(3, i) * rad) + D5 * ((sin(mat2(4, i) * rad) - sin(mat2(3, i) * rad)) / ((mat2(4, i) -
+mat2(3, i)) * rad));
+phi1=mat2(2,i);
+phi2=mat2(3,i);
+phi3=mat2(4,i);
+Hold1=D2*cos(phi1*rad);
+Hold2=D4*cos(phi2*rad) ;
+tvdbuild1=(D1*(sin(rad*(phi1))-sin(rad*0)))/(phi1*rad);
+tvddrop=D3*(sin(rad*phi2)-sin(rad*phi1))/((phi2-phi1)*rad);
+tvdbuild2=D5*(sin(rad*phi3)-sin(rad*phi2))/((phi3-phi2)*rad);
+TVD=tvdbuild1+tvdbuild2+tvddrop+Hold1+Hold2+mat2(16,i);
+%The following wellbore constraints are also applied.
+if D1 > 0 && D2 > 0 && D3 > 0 && D4 > 0 &&...
+D5 > 0 && cas1 > 1800 && cas1 < 2200 && cas2 > 7200 &&...
+cas2 < 8700 && cas3 > 10835 && cas3 < 10885 &&...
+TVD > 10850 && TVD < 10900
+%If constraints are all satisfied the variable values from matrix mat2 are transferred into matrix mat.
+for d=1:x
+mat(d,i)=mat2(d,i);
+end
+mat(17,i)=mat2(17,i);
+%Update the particles best known position
+if z<pi(17,i)
+for d=1:x
+pi(d,i)=mat(d,i);
+end
+pi(17,i)=z;
+end
+%Update the swarm's best known position
+if z<GV
+for d=1:x
+G(d)=mat(d,i);
+end
+GV=z;
+a1=TVD;
+end
+end
+end
+ite=ite+1;
+figure (1)
+E1(ite)=GV;
+plot(1:ite,E1(1:ite),'b')
+hold on
+xlabel('Number of Iterations')
+ylabel('True Measured Depth TMD (ft)')
+end
+%Place G matrix into the IU matrix for each run of the algorithm.
+IU(1:16,COUNTER)=G(1:16,1);
+IU(17,COUNTER)=GV;
+COUNTER=COUNTER+1;
+end
+disp('----------------------------------')
+disp(' The Optimum values found by PSO are: ')
+disp('----------------------------------')
+disp('HP='); disp('phi1=');disp('phi2='); disp('phi3=');
+disp('theta1=');disp('theta2='); disp('theta3=');disp('theta4=');
+disp('theta5='); disp('theta6=');disp('T1='); disp('T3=');
+disp('T5='); disp('Dd=');disp('Db='); disp('Dkop=');
+G(1:16,1)
+disp('TMD=');
+disp(GV);
+disp('TVD=');
+disp(a1);
+toc
+%If more than one run of the algorithm has been calculated (i.e.RWTPth>1) draw the boxplots.
+if COUNTER>2
+%Draw Boxplots
+subplot(4,4,1);boxplot(IU(2,1:RWTPth));
+xlabel('Phi1 (degree)')
+subplot(4,4,2);boxplot(IU(3,1:RWTPth));
+xlabel('Phi2 (degree)')
+subplot(4,4,3);boxplot(IU(4,1:RWTPth));
+xlabel('Phi3 (degree)')
+subplot(4,4,4);boxplot(IU(5,1:RWTPth));
+xlabel('Theta1 (degree)')
+subplot(4,4,5);boxplot(IU(6,1:RWTPth));
+xlabel('Theta2 (degree)')
+subplot(4,4,6);boxplot(IU(7,1:RWTPth));
+xlabel('Theta3 (degree)')
+subplot(4,4,7);boxplot(IU(8,1:RWTPth));
+xlabel('Theta4 (degree)')
+subplot(4,4,8);boxplot(IU(9,1:RWTPth));
+xlabel('Theta5 (degree)')
+subplot(4,4,9);boxplot(IU(10,1:RWTPth));
+xlabel('Theta6 (degree)')
+subplot(4,4,10);boxplot(IU(11,1:RWTPth));
+xlabel('T1 (degree/100ft)')
+subplot(4,4,11);boxplot(IU(12,1:RWTPth));
+xlabel('T3 (degree/100ft)')
+subplot(4,4,12);boxplot(IU(13,1:RWTPth));
+xlabel('T5 (degree/100ft)')
+subplot(4,4,13);boxplot(IU(14,1:RWTPth));
+xlabel('Dd (ft)')
+subplot(4,4,14);boxplot(IU(15,1:RWTPth));
+xlabel('Db (ft)')
+subplot(4,4,15);boxplot(IU(16,1:RWTPth));
+xlabel('Dkop (ft)')
+subplot(4,4,16);boxplot(IU(17,1:RWTPth));
+xlabel('True Measured Depth (ft)')
+end

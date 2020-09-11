@@ -1,0 +1,68 @@
+
+
+%Gbest - Xi
+
+
+
+
+
+
+
+
+for k=1:NumOfCandidates
+    a=0;
+    b=0;
+    for j=1:NumOfWells-1
+        
+        for i=1:NumOfWells %  1-9
+            
+            if Gbest(1,j)==d(k,i) && Gbest(1,j+1)~= d(k,i+1);
+                a=a+1;
+              %  if a==1;
+                    GB_X(k,2*a-1)=Gbest(1,j);
+                    GB_X(k,2*a)=Gbest(1,j+1);
+               
+            elseif Gbest(1,j)==d(k,i) && Gbest(1,j+1)== d(k,i+1);
+               b=b+1;
+               num=a+1;
+               shr=a;
+                any(k,b)=d(k,i+1);
+               
+                
+              
+                    
+                
+            end
+           
+        end
+        
+        
+    end
+    
+    
+end
+
+
+
+
+
+
+for j=1:NumOfCandidates
+    %********************************
+    a=0;
+    %********************************
+    
+    
+    for i=1:10
+    if GB_X(j,i)==GB_X(j,i+1) ||  GB_X(j,i)==GB_X(j,i+2) 
+        
+        
+        
+    else
+        a=a+1;
+        GB_X(j,a)=GB_X(j,i);
+    end
+    end
+    
+    
+end
