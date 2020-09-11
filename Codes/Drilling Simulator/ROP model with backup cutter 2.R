@@ -36,12 +36,13 @@ DataTimeInter <- 5 # sec
 
 # BG <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/BG.csv", header = T)
 # BG <- read.csv("C:/Users/Farshid/Desktop/rop/BG.csv", header = T)
-BG <- read.csv("/cloud/project/BG.csv", header = T)
+# C:\Users\DASLAB Hareland 3\Documents\All_Amin_Github\Petroleum-and-Drilling-Enginnering\Codes\Drilling Simulator
+BG <- read.csv("../Drilling Simulator/BG.csv", header = T)
 BG <- 0.01*BG
 Num_of_Data <- nrow(BG)
 # BU_BG <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/BU_BG.csv", header = T)
 # BU_BG <- read.csv("C:/Users/Farshid/Desktop/rop/BU_BG.csv", header = T)
-BU_BG <- read.csv("/cloud/project/BU_BG.csv", header = T)
+BU_BG <- read.csv("../Drilling Simulator/BU_BG.csv", header = T)
 BU_BG <- 0.01*BU_BG
 Num_of_Data <- nrow(BU_BG)
 
@@ -57,37 +58,37 @@ colnames(ROP) <- 'ROP (ft/hr)'
 #----------------------------WOB Column
 # WOB <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/WOB.csv", header = T); WOB <-1*WOB
 # WOB <- read.csv("C:/Users/Farshid/Desktop/rop/WOB.csv", header = T); WOB <-2*WOB
-WOB <- read.csv("/cloud/project/WOB.csv", header = T); WOB <-2*WOB
+WOB <- read.csv("../Drilling Simulator/WOB.csv", header = T); WOB <-2*WOB
 WOC <- WOB/NOC
 colnames(WOC) <- 'WOC,lbf'
 #----------------------------RPM Column
 # RPM <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/RPM.csv", header = T); RPM <- 1*RPM
 # RPM <- read.csv("C:/Users/Farshid/Desktop/rop/RPM.csv", header = T); RPM <- 1*RPM
-RPM <- read.csv("/cloud/project/RPM.csv", header = T); RPM <- 1*RPM
+RPM <- read.csv("../Drilling Simulator/RPM.csv", header = T); RPM <- 1*RPM
 #----------------------------CCS Column
 # CCS <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/CCS.csv", header = T); CCS <- 0.5*CCS
 # CCS <- read.csv("C:/Users/Farshid/Desktop/rop/CCS.csv", header = T); CCS <- 1*CCS
-CCS <- read.csv("/cloud/project/CCS.csv", header = T); CCS <- 1*CCS
+CCS <- read.csv("../Drilling Simulator/CCS.csv", header = T); CCS <- 1*CCS
 #----------------------------Tf Column
 # Tf <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/Tf.csv", header = T)
 # Tf <- read.csv("C:/Users/Farshid/Desktop/rop/Tf.csv", header = T)
-Tf <- read.csv("/cloud/project/Tf.csv", header = T)
+Tf <- read.csv("../Drilling Simulator/Tf.csv", header = T)
 #----------------------------kf Column
 # kf <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/kf.csv", header = T)
 # kf <- read.csv("C:/Users/Farshid/Desktop/rop/kf.csv", header = T)
-kf <- read.csv("/cloud/project/Kf.csv", header = T)
+kf <- read.csv("../Drilling Simulator/Kf.csv", header = T)
 #----------------------------alpha_f Column
 # alpha_f <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/alpha_f.csv", header = T)
 # alpha_f <- read.csv("C:/Users/Farshid/Desktop/rop/alpha_f.csv", header = T)
-alpha_f <- read.csv("/cloud/project/alpha_f.csv", header = T)
+alpha_f <- read.csv("../Drilling Simulator/alpha_f.csv", header = T)
 #----------------------------thermal response function 
 # f <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/f.csv", header = T)
 # f <- read.csv("C:/Users/Farshid/Desktop/rop/f.csv", header = T)
-f <- read.csv("/cloud/project/f.csv", header = T)
+f <- read.csv("../Drilling Simulator/f.csv", header = T)
 #----------------------------khf (w/cm/C) 
 # khf <- read.csv("C:/Users/DASLAB Hareland 3/Desktop/R calc file/ROP drafts/khf.csv", header = T)
 # khf <- read.csv("C:/Users/Farshid/Desktop/rop/khf.csv", header = T)
-khf <- read.csv("/cloud/project/Khf.csv", header = T)
+khf <- read.csv("../Drilling Simulator/Khf.csv", header = T)
 #----------------------------FN1 and FN2 
 #normal forces on cutter and back up cutter
 FN1 <- matrix(0,Num_of_Data,1)
