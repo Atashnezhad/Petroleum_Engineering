@@ -14,9 +14,7 @@
   <img width="1000" src="Assets/GA in Excel program3.gif" >
 </p>
 
-<p align="center">
-  <img width="600" src="Assets/DE algo.gif" >
-</p>
+
 
 
 <p align="center">
